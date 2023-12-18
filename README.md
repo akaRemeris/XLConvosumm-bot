@@ -1,15 +1,16 @@
-# Concerning model
-## Introduction
+# XLConvosumm-bot
+## Concerning models
+### Introduction
 
 Conversation, discussion - A sequence of sentences whose semantics implies the presence of a **subject** of discussion, main **theses** on the matter and **premises** to the theses. These are three main entities summarizer has to consider, for it to make conversation summary short, but informative.
-I have not met any dataset, except [Convosumm](https://github.com/Yale-LILY/ConvoSumm), that would provide a similar decomposition of chat polemics in summarization. In addition, other popular datasets, despite their size, mostly contains short and oversimplified messages. While size of the input sequence in Convosumm even require to extend model's positional encodings for it to grasp all data points. And the last problem - most of the my chat polemics are in russian language.
+I have not met any dataset, except [Convosumm](https://github.com/Yale-LILY/ConvoSumm), that would provide a similar decomposition of chat polemics in summarization. In addition, other popular datasets, despite their size, mostly contains short and oversimplified messages. While size of the input sequence in Convosumm even require to extend model's positional encodings for it to grasp all data points. And the last problem - most of my chat polemics are in russian language.
 
 So there are three motivational problems:
-1. Longer input context.
+1. Longer than usual input context required.
 2. More complex summary structure.
 3. Cross language inference.
 
-## Expirementing
+### Expirementing
 
 Based on the article by the creators of Convosumm, SOTA result was achieved by fine-tuning BART language model (LM) pre-trained on CNN-DM, which outperformed T5 (probably due to the specifics of BART’s pre-training task).
 
@@ -32,7 +33,7 @@ After choosing pre-trained model and successefuly testing it's ability to learn 
 | [d0rj/rut5-base-summ](https://huggingface.co/d0rj/rut5-base-summ) | [Click](https://wandb.ai/remeris/Convosumm-Models-comparison/runs/og2mm25e)|
 
 ### Final solution
-Considering everything mentioned above, the final hypothesis was as follows: in a resource-limited environment [facebook/bart-large-cnn](https://huggingface.co/facebook/bart-large-cnn) with extended positional encodings fine-tuned on Convosumm will produce the best possible result. Pre and post sequence translation with engilsh LM inference between, will produce better 
+Considering everything mentioned above, the final hypothesis was as follows: in a resource-limited environment [facebook/bart-large-cnn](https://huggingface.co/facebook/bart-large-cnn) with extended positional encodings fine-tuned on Convosumm will produce the best possible result. Pre and post translation of text sequences with an English LM inference in between will have less negative impact on the overall quality of the output, rather than blunt translation of the whole Convosumm dataset and training russian LM on it.
 
 Hyper-parameters and context extention method are taken from the original [dataset article](https://arxiv.org/pdf/2106.00829.pdf) and [general article](https://arxiv.org/pdf/2010.12836.pdf) on LM fine-tuning on abstract summarization.
 
@@ -40,3 +41,5 @@ Hyper-parameters and context extention method are taken from the original [datas
 | Model | Wandb Logs |
 | --- | --- |
 | [Remeris/BART-CNN-Convosumm](https://huggingface.co/Remeris/BART-CNN-Convosumm) | [Click](https://wandb.ai/remeris/BART-CNN-Convosumm/runs/68syxthd)|
+
+## Concerning bots
