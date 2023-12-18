@@ -1,0 +1,56 @@
+BOT_TOKEN: "6505415429:AAFTb_-5ZKRlbim_-i9OF38Uv9fAViLn2Ko"
+
+fnames:
+  message_accumulator:
+    'accumulated_messages'
+
+misc_messages:
+  no_file_reply:
+    'No messages stored.'
+
+commands:
+  start:
+      'command': start
+      'description': 'Get command menu.'
+      'reply': 'Hi!'
+
+  terminate_bot:
+      'command': stop
+      'description': 'Stop bot polling.'
+      'reply': 'Shutting off.'
+
+  check_messages:
+      'command': check
+      'description': 'Print stored messages.'
+      'reply': "Printing stored messages..."
+
+  reset_messages:
+      'command': reset
+      'description': 'Remove accumulated messages.'
+      'reply': 'Stored messeges wiped.'
+
+  load_model:
+      'command': load
+      'description': 'Load specified model.'
+      'reply': 'Model loaded.'
+
+  make_summary:
+      'command': summary
+      'description': 'Run model pipeline.'
+      'reply': 'Summarizing...'
+
+  change_ilanguage:
+      'command': langi
+      'description': 'Specify context language.'
+      'reply': 'Input language set.'
+
+  change_mlanguage:
+      'command': langm
+      'description': "Specify model's language"
+      'reply': 'Model language set.'
+
+  change_olanguage:
+      'command': lango
+      'description': 'Specify summary language.'
+      'reply': 'Output language set.'
+
