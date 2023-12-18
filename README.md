@@ -1,5 +1,18 @@
 # XLConvosumm-bot
-## Concerning models
+## Concerning project
+Bot is ready to /summarize any forwarded messages, right after setting up BOT_TOKEN and script launch.
+Although, if you want to specify certain model or input/output language,
+checkout the list of commands in bot's config or bot's /menu.
+### How to run
+Config by default bot_config.yaml:
+```
+python summary_bot.py
+```
+Custom config:
+```
+python summary_bot.py -config <NAME_OF_CONFIG>
+```
+## Concerning default model
 ### Introduction
 
 Conversation, discussion - A sequence of sentences whose semantics implies the presence of a **subject** of discussion, main **theses** on the matter and **premises** to the theses. These are three main entities summarizer has to consider, for it to make conversation summary short, but informative.
@@ -41,5 +54,3 @@ Hyper-parameters and context extention method are taken from the original [datas
 | Model | Wandb Logs |
 | --- | --- |
 | [Remeris/BART-CNN-Convosumm](https://huggingface.co/Remeris/BART-CNN-Convosumm) | [Click](https://wandb.ai/remeris/BART-CNN-Convosumm/runs/68syxthd)|
-
-## Concerning bots
