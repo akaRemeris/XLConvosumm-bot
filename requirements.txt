@@ -1,0 +1,5 @@
+deep_translator==1.11.4
+langdetect==1.0.9
+pyTelegramBotAPI==4.14.0
+PyYAML==6.0
+transformers==4.36.0
