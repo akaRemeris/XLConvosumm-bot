@@ -11,10 +11,11 @@ class ModelAPI():
     def __init__(self) -> None:
         self.set_model_name("Remeris/BART-CNN-Convosumm")
         self.model_language = 'en'
-        self.set_input_language('auto')
-        self.set_output_language('auto')
         self.context_translator = None
         self.summary_translator = None
+        self.set_input_language('auto')
+        self.set_output_language('auto')
+
         self.summarizer = None
 
     def set_model_name(self, model_name) -> None:

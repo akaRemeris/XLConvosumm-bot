@@ -1,6 +1,7 @@
 data
 notebooks
 *old*
+*dev*
 __pycache__
 model
 experiments

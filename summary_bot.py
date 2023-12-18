@@ -94,6 +94,23 @@ if __name__ == '__main__':
         except FileNotFoundError:
             bot.send_message(message.chat.id, config['misc_messages']['no_file_reply'])
 
+    def process_name_step(message):
+        """
+        Set the desired model's name, before loading it's pipeline.
+        Default - Remeris/BART-CNN-Convosumm
+        """
+        model_api.set_model_name(message.text)
+        bot.send_message(message.chat.id, commands['chose_model']['reply'])
+
+    @bot.message_handler(commands=[commands['chose_model']['command']])
+    def chose_model(message):
+        """
+        Chose model to load, default - Remeris/BART-CNN-Convosumm
+
+        """
+        bot.send_message(message.chat.id, commands['chose_model']['description'])
+        bot.register_next_step_handler(message, process_name_step)
+
     @bot.message_handler(commands=[commands['load_model']['command']])
     def load_model(message):
         """

@@ -29,6 +29,11 @@ commands:
       'description': 'Remove accumulated messages.'
       'reply': 'Stored messeges wiped.'
 
+  chose_model:
+      'command': model
+      'description': 'Specify model to load.'
+      'reply': 'Model specified.'
+
   load_model:
       'command': load
       'description': 'Load specified model.'
