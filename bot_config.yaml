@@ -2,7 +2,7 @@ BOT_TOKEN: "6505415429:AAFTb_-5ZKRlbim_-i9OF38Uv9fAViLn2Ko"
 
 fnames:
   message_accumulator:
-    'accumulated_messages'
+    'messages_cache'
 
 misc_messages:
   no_file_reply:
@@ -32,7 +32,7 @@ commands:
   chose_model:
       'command': model
       'description': 'Specify model to load.'
-      'reply': 'Model specified.'
+      'reply': "Model specified, don't forget to load it!"
 
   load_model:
       'command': load

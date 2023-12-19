@@ -40,14 +40,47 @@ if __name__ == '__main__':
 
     commands = config['commands']
 
+    #TODO: it just works, tho needs refactoring
+    def process_name_step(message):
+        """
+        Set the desired model's name, before loading it's pipeline.
+        Default - Remeris/BART-CNN-Convosumm
+        """
+        model_api.set_model_name(message.text)
+        bot.send_message(message.chat.id, commands['chose_model']['reply'])
+
+    def process_ilanguage_step(message):
+        """
+        User-provided context language change handler.
+        Default - autodetect.
+        """
+        model_api.set_input_language(message.text)
+        bot.send_message(message.chat.id, commands['change_ilanguage']['reply'])
+
+    def process_mlanguage_step(message):
+        """
+        Model input and inference language change handler.
+        Default - en.
+        """
+        model_api.set_model_language(message.text)
+        bot.send_message(message.chat.id, commands['change_mlanguage']['reply'])
+
+    def process_olanguage_step(message):
+        """
+        Output summary language change handler.
+        Default - same as input.
+        """
+        model_api.set_output_language(message.text)
+        bot.send_message(message.chat.id, commands['change_olanguage']['reply'])
+
     @bot.message_handler(commands=[commands['change_ilanguage']['command']])
     def change_input_language(message):
         """
         Manually set language of accumulated messages to summarize.
 
         """
-        model_api.set_input_language(message.text)
-        bot.reply_to(message, commands['change_ilanguage']['reply'])
+        bot.send_message(message.chat.id, commands['change_ilanguage']['description'])
+        bot.register_next_step_handler(message, process_ilanguage_step)
 
     @bot.message_handler(commands=[commands['change_mlanguage']['command']])
     def change_model_language(message):
@@ -55,8 +88,8 @@ if __name__ == '__main__':
         Manually set language which model is trained on.
 
         """
-        model_api.set_model_language(message.text)
-        bot.reply_to(message, commands['change_mlanguage']['reply'])
+        bot.send_message(message.chat.id, commands['change_mlanguage']['description'])
+        bot.register_next_step_handler(message, process_mlanguage_step)
 
     @bot.message_handler(commands=[commands['change_olanguage']['command']])
     def change_output_language(message):
@@ -64,8 +97,8 @@ if __name__ == '__main__':
         Manually set language of output summary.
 
         """
-        model_api.set_output_language(message.text)
-        bot.reply_to(message, commands['change_olanguage']['reply'])
+        bot.send_message(message.chat.id, commands['change_olanguage']['description'])
+        bot.register_next_step_handler(message, process_olanguage_step)
 
     @bot.message_handler(commands=[commands['check_messages']['command']])
     def check_stored_messages(message):
@@ -93,14 +126,6 @@ if __name__ == '__main__':
             bot.send_message(message.chat.id, commands['reset_messages']['reply'])
         except FileNotFoundError:
             bot.send_message(message.chat.id, config['misc_messages']['no_file_reply'])
-
-    def process_name_step(message):
-        """
-        Set the desired model's name, before loading it's pipeline.
-        Default - Remeris/BART-CNN-Convosumm
-        """
-        model_api.set_model_name(message.text)
-        bot.send_message(message.chat.id, commands['chose_model']['reply'])
 
     @bot.message_handler(commands=[commands['chose_model']['command']])
     def chose_model(message):
