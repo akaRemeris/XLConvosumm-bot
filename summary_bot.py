@@ -20,7 +20,8 @@ def process_message(message: str):
         processed_message = message + '. '
     else:
         processed_message = message + ' '
-
+    
+    processed_message = re.sub(r"\n", ' ', processed_message)
     return processed_message
 
 if __name__ == '__main__':
