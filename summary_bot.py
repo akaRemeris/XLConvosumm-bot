@@ -33,7 +33,7 @@ if __name__ == '__main__':
                         type=str,
                         help='')
     args = parser.parse_args()
-    with open(args.config, "r", encoding='utf-8') as ymlfile:
+    with open(args.config, "r", encoding='Windows-1251') as ymlfile:
         config = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
     bot = telebot.TeleBot(config['BOT_TOKEN'], parse_mode=None)
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         bot.reply_to(message, commands['check_messages']['reply'])
         try:
             with open(config['fnames']['message_accumulator'], 'r',
-                      encoding='utf-8') as fstream:
+                      encoding='Windows-1251') as fstream:
                 content = fstream.readlines()
                 bot.send_message(message.chat.id, content)
         except FileNotFoundError:
@@ -154,7 +154,7 @@ if __name__ == '__main__':
         """
         bot.send_message(message.chat.id, commands['make_summary']['reply'])
         with open(config['fnames']['message_accumulator'], 'r',
-                  encoding='utf-8') as fstream:
+                  encoding='Windows-1251') as fstream:
             messages = fstream.readline()
         model_answer = model_api.summarize(messages)
         bot.send_message(message.chat.id, model_answer)
@@ -191,7 +191,7 @@ if __name__ == '__main__':
 
         """
         with open(config['fnames']['message_accumulator'], 'a',
-                  encoding='utf-8') as fstream:
+                  encoding='Windows-1251') as fstream:
             text = process_message(message.text)
             fstream.write(text)
 
